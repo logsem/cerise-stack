@@ -62,6 +62,35 @@ Note that we have included a copy of the generated html files as a supplemental 
 
 # Organization
 
+First is a lookup table for the definitions in the paper. 
+
+| *paper*                                                | *file* or *folder*                    | *name*                                               |
+|--------------------------------------------------------|---------------------------------------|------------------------------------------------------|
+| Machine words, machine state and instructions (Fig 1)  | machine\_base.v                       |                                                      |
+| Permission and locality hierarchy (Fig 2)              | machine\_base.v                       | `PermFlowsTo` - `LocalityFlowsTo`                    |
+| Operational semantics: reduction steps (Fig 3)         | cap\_lang.v                           | `prim_step`                                          |
+| Operational semantics: instruction semantics (Fig 4)   | cap\_lang.v                           | `exec`                                               |
+| Separation Logic Specifications (Fig 6)                | rules/*                               | e.g. `rules_Store.v\wp_store_success_reg`            |
+| rclear Specification (Fig 6)                           | examples/stack\_macros.v              | `rclear_spec`                                        |
+| Safety with Revocation (Fig 9)                         | logrel.v                              |                                                      |
+| Expression relation (Fig 9)                            | logrel.v                              | `interp_expr`                                        |
+| Register relation (Fig 9)                              | logrel.v                              | `interp_reg`                                         |
+| Value relation (Fig 9)                                 | logrel.v                              | `interp1` (and its fixpoint `interp`)                |
+| State relation (Fig 9)                                 | logrel.v                              | `region_state_*`                                     |
+| Standard State Transition System (Fig 10)              | region\_invariants.v                  | `region_type` with `std_rel_pub` and `std_rel_priv`  |
+| Standard Resources (Fig 11)                            | region\_invariants.v                  | inlined in `region_map_def`                          |
+| Mstd                                                   | sts.v                                 | `sts_full_std`, with the global gname (γs\_std)      |
+| Mcus                                                   | sts.v                                 | `sts_full`, with the global gnames (γs\_loc,γr\_loc) |
+| stsCollection                                          | sts.v                                 | `sts_full_world`                                     |
+| sharedResources                                        | region\_invariants.v                  | `region`                                             |
+| Fundamental Theorem of Logical Relations (Theorem 6.1) | fundamental.v                         | `fundamental_from_interp`                            |
+| Awkward Example: g1 (Fig 13)                           | examples/awkward\_example\_preamble.v | `awkward_preamble_instrs`                            |
+| Awkward Example: f1 (Fig 13)                           | examples/awkward\_example\_u.v        | `awkward_instrs`                                     |
+| Lemma 6.2                                              | examples/awkward\_example\_preamble.v | `awkward_preamble_spec`                              |
+| Theorem 6.3                                            | examples/awkward\_example\_adequacy.v | `awkward_example_adequacy`                           |
+
+Next we describe the file organization of the implementation. 
+
 The organization of the `theories/` folder is as follows.
 
 ## Operational semantics
