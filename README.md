@@ -14,7 +14,7 @@ those, two options:
 - **Option 1**: create a fresh *local* opam switch with everything needed:
 
 ```
-   opam switch create -y --deps-only --repositories=default,coq-released=https://coq.inria.fr/opam/released .
+   opam switch create -y --deps-only --repositories=default,coq-released=https://coq.inria.fr/opam/released . ocaml-base-compiler.4.08.1
    eval $(opam env)
 ```
 
