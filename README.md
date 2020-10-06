@@ -30,6 +30,12 @@ those, two options:
     opam install coq-iris.3.2.0
 ```
 
+- **Option 3 (Docker)**: run a docker image using the provided Dockerfile (note that you might need to increse allocated memory). You can build the project with the following command: 
+```
+    docker build --tag iris-caps --build-arg NJOBS=N
+```
+Where N is the number of cores on your machine
+
 ### Troubleshooting
 
 For Option 1, if the invocation fails at some point, either remove the `_opam`
