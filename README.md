@@ -4,8 +4,6 @@ Capabilities".
 
 # Building and browsing the proofs
 
-## [Option 1] Locally, using opam to install the dependencies
-
 You need to have [opam](https://opam.ocaml.org/) >= 2.0 installed. If this is
 the first time you install opam, you additionally need to run `opam init`.
 
@@ -40,13 +38,13 @@ well):
 coqide theories/fundamental.v  # for instance
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 If the opam invocation fails at some point, either remove the `_opam` directory
 and re-run the command (this will redo everything), or do `eval $(opam env)` and
 then `opam install -y .` (this will continue from where it failed).
 
-### Cleanup
+## Cleanup
 
 It is enough to remove the `_opam` directory to get rid of everything that has
 been installed for building the proofs.
