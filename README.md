@@ -2,48 +2,23 @@ This directory contains the Coq mechanization accompanying the submission
 "Efficient and Provable Local Capability Revocation using Uninitialized
 Capabilities".
 
-# Building the proofs
+# Building and browsing the proofs
 
-## Installing the dependencies
+## [Option 1] Locally, using opam to install the dependencies
 
-You need to have [opam](https://opam.ocaml.org/) >= 2.0 installed.
+You need to have [opam](https://opam.ocaml.org/) >= 2.0 installed. If this is
+the first time you install opam, you additionally need to run `opam init`.
 
-The development is known to compile with Coq 8.9.1 and Iris 3.2.0. To install
-those, two options:
-
-- **Option 1**: create a fresh *local* opam switch with everything needed:
+Then, let us create a fresh *local* opam switch with everything needed. This
+will install coq and iris in a local `_opam` directory:
 
 ```
-   opam switch create -y --deps-only --repositories=default,coq-released=https://coq.inria.fr/opam/released . ocaml-base-compiler.4.08.1
+   opam switch create -y --repositories=default,coq-released=https://coq.inria.fr/opam/released . ocaml-base-compiler.4.08.1
    eval $(opam env)
+   opam install coqide  # optional, but useful to browse the proofs
 ```
 
-- **Option 2 (manual installation)**: if you already have an opam switch with
-  ocaml >= 4.02.3 and < 4.10:
-
-```
-    # Add the coq-released repo (skip if you already have it)
-    opam repo add coq-released https://coq.inria.fr/opam/released
-    # Install Coq 8.9.1 (skip if already installed)
-    opam install coq.8.9.1
-    opam update
-    opam install coq-iris.3.2.0
-```
-
-- **Option 3 (Docker)**: run a docker image using the provided Dockerfile (note that you might need to increse allocated memory). You can build the project with the following command: 
-```
-    docker build --tag iris-caps --build-arg NJOBS=N
-```
-Where N is the number of cores on your machine
-
-### Troubleshooting
-
-For Option 1, if the invocation fails at some point, either remove the `_opam`
-directory and re-run the command (this will redo everything), or do `eval $(opam
-env)` and then `opam install -y --deps-only .` (this will continue from where it
-failed).
-
-## Building
+Then, build the development:
 
 ```
 make -jN  # replace N with the number of CPU cores of your machine
@@ -56,6 +31,42 @@ compile.
 
 It is possible to run `make fundamental` to only build files up to the
 Fundamental Theorem. This usually takes up 20 minutes.
+
+
+After building, one can use `coqide` to browse the proofs (ProofGeneral works as
+well):
+
+``` 
+coqide theories/fundamental.v  # for instance
+```
+
+### Troubleshooting
+
+If the opam invocation fails at some point, either remove the `_opam` directory
+and re-run the command (this will redo everything), or do `eval $(opam env)` and
+then `opam install -y .` (this will continue from where it failed).
+
+### Cleanup
+
+It is enough to remove the `_opam` directory to get rid of everything that has
+been installed for building the proofs.
+
+To additionally get rid of *anything opam-related in general*, additionally
+remove `~/.opam` (if you just installed opam and do not plan on using it
+further).
+
+
+## [Option 2] Using Docker
+
+Run a docker image using the provided Dockerfile (note that you might need to increase allocated memory).
+You can build the project with the following command:
+
+```
+    docker build --tag iris-caps --build-arg NJOBS=N
+```
+
+Where N is the number of cores on your machine
+
 
 # Documentation
 
