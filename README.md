@@ -56,18 +56,6 @@ remove `~/.opam` (if you just installed opam and do not plan on using it
 further).
 
 
-## [Option 2] Using Docker
-
-Run a docker image using the provided Dockerfile (note that you might need to increase allocated memory).
-You can build the project with the following command:
-
-```
-    docker build --tag iris-caps --build-arg NJOBS=N
-```
-
-Where N is the number of cores on your machine
-
-
 # Documentation
 
 After building the development, documentation generated using Coqdoc can be
